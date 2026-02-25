@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import CategoriesSection from "./components/CategoriesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import HeroButton from "./components/HeroButton";
+import HomepageScripts from "./components/HomepageScripts";
 import type { Metadata } from "next";
 
   export const metadata: Metadata = {
@@ -143,6 +144,9 @@ import type { Metadata } from "next";
 
         {/* Footer */}
         <Footer />
+        
+        {/* Homepage-specific optimized scripts */}
+        <HomepageScripts />
       </>
     );
   }

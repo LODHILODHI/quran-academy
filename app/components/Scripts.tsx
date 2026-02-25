@@ -1,9 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Scripts() {
+  const pathname = usePathname();
+  
   useEffect(() => {
+    // Skip loading scripts on homepage - HomepageScripts handles it
+    if (pathname === "/") {
+      return;
+    }
     // Load scripts in correct order
     const loadScript = (src: string): Promise<void> => {
       return new Promise((resolve, reject) => {

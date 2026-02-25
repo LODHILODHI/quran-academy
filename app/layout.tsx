@@ -75,9 +75,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Preload critical resources for faster LCP */}
-        <link rel="preload" href="/assets/img/hero/learn-quran-online-banner.jpg.jpg" as="image" />
+        <link rel="preload" href="/assets/img/hero/learn-quran-online-banner.jpg.jpg" as="image" fetchPriority="high" />
         <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" />
         <link rel="preload" href="/assets/css/style.css" as="style" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         
         {/* Load critical CSS files synchronously */}
         <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
