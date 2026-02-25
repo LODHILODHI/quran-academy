@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CategoriesSection() {
   return (
@@ -16,10 +17,13 @@ export default function CategoriesSection() {
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="single-course mb-50" style={{background: "#fff", borderRadius: "8px", overflow: "hidden", boxShadow: "0 2px 10px rgba(0,0,0,0.1)"}}>
               <div className="course-img" style={{position: "relative", width: "100%", height: "250px", overflow: "hidden"}}>
-                <img 
+                <Image 
                   src="/assets/img/gallery/noorani-qaida.jpg" 
                   alt="Noorani Qaida Course" 
-                  style={{width: "100%", height: "100%", objectFit: "cover"}}
+                  fill
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{objectFit: "cover"}}
                 />
                 <span style={{
                   position: "absolute",
@@ -74,10 +78,13 @@ export default function CategoriesSection() {
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="single-course mb-50" style={{background: "#fff", borderRadius: "8px", overflow: "hidden", boxShadow: "0 2px 10px rgba(0,0,0,0.1)"}}>
               <div className="course-img" style={{position: "relative", width: "100%", height: "250px", overflow: "hidden"}}>
-                <img 
+                <Image 
                   src="/assets/img/gallery/quran-reading.jpg" 
                   alt="Quran Reading Course" 
-                  style={{width: "100%", height: "100%", objectFit: "cover"}}
+                  fill
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{objectFit: "cover"}}
                 />
                 <span style={{
                   position: "absolute",
@@ -97,12 +104,12 @@ export default function CategoriesSection() {
                   <h4 style={{margin: 0, marginRight: "10px", fontSize: "20px", fontWeight: "600"}}>
                     <Link href="/courses/quran-reading" style={{color: "#091a23", textDecoration: "none"}}>Quran Reading For Beginners</Link>
                   </h4>
-                  <img 
+                  <Image 
                     src="/assets/img/gallery/team2.png" 
                     alt="Teacher" 
+                    width={40}
+                    height={40}
                     style={{
-                      width: "40px",
-                      height: "40px",
                       borderRadius: "50%",
                       objectFit: "cover",
                       border: "2px solid #ff6b35"
@@ -132,10 +139,13 @@ export default function CategoriesSection() {
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="single-course mb-50" style={{background: "#fff", borderRadius: "8px", overflow: "hidden", boxShadow: "0 2px 10px rgba(0,0,0,0.1)"}}>
               <div className="course-img" style={{position: "relative", width: "100%", height: "250px", overflow: "hidden"}}>
-                <img 
+                <Image 
                   src="/assets/img/gallery/quran-memorization.jpg" 
                   alt="Quran Memorization Course" 
-                  style={{width: "100%", height: "100%", objectFit: "cover"}}
+                  fill
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{objectFit: "cover"}}
                 />
                 <span style={{
                   position: "absolute",
@@ -155,12 +165,12 @@ export default function CategoriesSection() {
                   <h4 style={{margin: 0, marginRight: "10px", fontSize: "20px", fontWeight: "600"}}>
                     <Link href="/courses/quran-memorization" style={{color: "#091a23", textDecoration: "none"}}>Quran Memorization (Hifz)</Link>
                   </h4>
-                  <img 
+                  <Image 
                     src="/assets/img/gallery/team3.png" 
                     alt="Teacher" 
+                    width={40}
+                    height={40}
                     style={{
-                      width: "40px",
-                      height: "40px",
                       borderRadius: "50%",
                       objectFit: "cover",
                       border: "2px solid #ff6b35"
@@ -190,10 +200,13 @@ export default function CategoriesSection() {
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="single-course mb-50" style={{background: "#fff", borderRadius: "8px", overflow: "hidden", boxShadow: "0 2px 10px rgba(0,0,0,0.1)"}}>
               <div className="course-img" style={{position: "relative", width: "100%", height: "250px", overflow: "hidden"}}>
-                <img 
+                <Image 
                   src="/assets/img/gallery/tajweed-course.jpg" 
                   alt="Tajweed Course" 
-                  style={{width: "100%", height: "100%", objectFit: "cover"}}
+                  fill
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{objectFit: "cover"}}
                 />
                 <span style={{
                   position: "absolute",
@@ -213,12 +226,12 @@ export default function CategoriesSection() {
                   <h4 style={{margin: 0, marginRight: "10px", fontSize: "20px", fontWeight: "600"}}>
                     <Link href="/courses/tajweed" style={{color: "#091a23", textDecoration: "none"}}>Tajweed Course</Link>
                   </h4>
-                  <img 
+                  <Image 
                     src="/assets/img/gallery/team4.png" 
                     alt="Teacher" 
+                    width={40}
+                    height={40}
                     style={{
-                      width: "40px",
-                      height: "40px",
                       borderRadius: "50%",
                       objectFit: "cover",
                       border: "2px solid #ff6b35"
@@ -248,10 +261,13 @@ export default function CategoriesSection() {
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="single-course mb-50" style={{background: "#fff", borderRadius: "8px", overflow: "hidden", boxShadow: "0 2px 10px rgba(0,0,0,0.1)"}}>
               <div className="course-img" style={{position: "relative", width: "100%", height: "250px", overflow: "hidden"}}>
-                <img 
+                <Image 
                   src="/assets/img/gallery/translation-tafseer.jpg" 
                   alt="Translation & Tafseer Course" 
-                  style={{width: "100%", height: "100%", objectFit: "cover"}}
+                  fill
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{objectFit: "cover"}}
                 />
                 <span style={{
                   position: "absolute",
@@ -271,12 +287,12 @@ export default function CategoriesSection() {
                   <h4 style={{margin: 0, marginRight: "10px", fontSize: "20px", fontWeight: "600"}}>
                     <Link href="/courses/translation-tafseer" style={{color: "#091a23", textDecoration: "none"}}>Translation & Tafseer</Link>
                   </h4>
-                  <img 
+                  <Image 
                     src="/assets/img/gallery/team1.png" 
                     alt="Teacher" 
+                    width={40}
+                    height={40}
                     style={{
-                      width: "40px",
-                      height: "40px",
                       borderRadius: "50%",
                       objectFit: "cover",
                       border: "2px solid #ff6b35"
@@ -306,10 +322,13 @@ export default function CategoriesSection() {
           <div className="col-lg-4 col-md-6 col-sm-6">
             <div className="single-course mb-50" style={{background: "#fff", borderRadius: "8px", overflow: "hidden", boxShadow: "0 2px 10px rgba(0,0,0,0.1)"}}>
               <div className="course-img" style={{position: "relative", width: "100%", height: "250px", overflow: "hidden"}}>
-                <img 
+                <Image 
                   src="/assets/img/gallery/islamic-studies.jpg" 
                   alt="Islamic Studies Course" 
-                  style={{width: "100%", height: "100%", objectFit: "cover"}}
+                  fill
+                  quality={85}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{objectFit: "cover"}}
                 />
                 <span style={{
                   position: "absolute",
@@ -329,12 +348,12 @@ export default function CategoriesSection() {
                   <h4 style={{margin: 0, marginRight: "10px", fontSize: "20px", fontWeight: "600"}}>
                     <Link href="/courses/islamic-studies" style={{color: "#091a23", textDecoration: "none"}}>Islamic Studies for Kids</Link>
                   </h4>
-                  <img 
+                  <Image 
                     src="/assets/img/gallery/team2.png" 
                     alt="Teacher" 
+                    width={40}
+                    height={40}
                     style={{
-                      width: "40px",
-                      height: "40px",
                       borderRadius: "50%",
                       objectFit: "cover",
                       border: "2px solid #ff6b35"

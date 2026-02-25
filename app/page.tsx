@@ -47,17 +47,26 @@ import type { Metadata } from "next";
               <div 
                 className="single-slider slider-height d-flex align-items-center"
                 style={{
-                  backgroundImage: "url('/assets/img/hero/learn-quran-online-banner.jpg.jpg')",
-                  backgroundSize: "cover",
-                  backgroundPosition: "center center",
-                  backgroundRepeat: "no-repeat",
-                  backgroundColor: "#1a1a2e",
                   position: "relative",
                   height: "100vh",
                   minHeight: "100vh",
-                  width: "100%"
+                  width: "100%",
+                  overflow: "hidden"
                 }}
               >
+                {/* Hero Image with Next.js Image component for better LCP */}
+                <Image
+                  src="/assets/img/hero/learn-quran-online-banner.jpg.jpg"
+                  alt="Learn Quran Online with Certified Tutors"
+                  fill
+                  priority
+                  quality={85}
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "center center"
+                  }}
+                  sizes="100vw"
+                />
                 {/* Dark overlay for better text readability */}
                 <div style={{
                   position: "absolute",
