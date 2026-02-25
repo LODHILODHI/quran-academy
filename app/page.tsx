@@ -47,7 +47,7 @@ import type { Metadata } from "next";
               <div 
                 className="single-slider slider-height d-flex align-items-center"
                 style={{
-                  backgroundImage: "url('/assets/img/hero/lodhi88.jpg')",
+                  backgroundImage: "url('/assets/img/hero/learn-quran-online-banner.jpg.jpg')",
                   backgroundSize: "cover",
                   backgroundPosition: "center center",
                   backgroundRepeat: "no-repeat",
