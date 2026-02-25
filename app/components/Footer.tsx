@@ -90,11 +90,6 @@ export default function Footer() {
           </div>
         </div>
       </footer>
-
-      {/* Scroll Up */}
-      <div id="back-top">
-        <a title="Go to Top" href="#"><i className="fas fa-level-up-alt"></i></a>
-      </div>
     </>
   );
 }
