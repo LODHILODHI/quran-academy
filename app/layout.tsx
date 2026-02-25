@@ -86,12 +86,18 @@ export default function RootLayout({
         <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico" />
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* Prevent FOUC - hide content until CSS and preloader are ready */
+            /* Prevent FOUC - but allow LCP element to be visible */
             html {
               visibility: hidden;
             }
             html.css-loaded {
               visibility: visible;
+            }
+            /* Don't hide hero section - it's the LCP element */
+            body > main > div:first-child,
+            body > main .slider-area {
+              visibility: visible !important;
+              opacity: 1 !important;
             }
             body > main,
             body > header,
