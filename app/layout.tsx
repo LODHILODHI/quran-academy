@@ -1,0 +1,117 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import HeadLinks from "./components/HeadLinks";
+import Scripts from "./components/Scripts";
+import StructuredData from "./components/StructuredData";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Online Quran Classes for Kids | Noorani Qaida, Tajweed | Free Trial - Quran Academy",
+  description: "Special Quran classes for kids! Learn Noorani Qaida, Quran reading, Tajweed, Islamic studies with Arab Sheikhs. 3 days free trial with certified tutors, Tajweed, Hifz, Tafseer, Arabic speaking.",
+  keywords: [
+    "online quran classes for kids", // Primary
+    "quran classes for kids", // Secondary
+    "learn quran online", // Secondary
+    "online tajweed classes", // Secondary
+    "noorani qaida online" // Related/LSI
+  ],
+  authors: [{ name: "Quran Academy" }],
+  openGraph: {
+    title: "Online Quran Classes for Kids | Noorani Qaida, Tajweed | Free Trial",
+    description: "Special Quran classes for kids! Learn Noorani Qaida, Quran reading, Tajweed, Islamic studies with Arab Sheikhs. 3 days free trial with certified tutors.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Online Quran Classes for Kids | Free Trial - Quran Academy",
+    description: "Special Quran classes for kids! Learn Noorani Qaida, Quran reading, Tajweed with Arab Sheikhs. 3 days free trial.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <head>
+        {/* Load CSS files in head for faster rendering */}
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
+        <link rel="stylesheet" href="/assets/css/slicknav.css" />
+        <link rel="stylesheet" href="/assets/css/flaticon.css" />
+        <link rel="stylesheet" href="/assets/css/gijgo.css" />
+        <link rel="stylesheet" href="/assets/css/animate.min.css" />
+        <link rel="stylesheet" href="/assets/css/magnific-popup.css" />
+        <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css" />
+        <link rel="stylesheet" href="/assets/css/themify-icons.css" />
+        <link rel="stylesheet" href="/assets/css/slick.css" />
+        <link rel="stylesheet" href="/assets/css/nice-select.css" />
+        <link rel="stylesheet" href="/assets/css/style.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico" />
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* Prevent FOUC - hide content until CSS and preloader are ready */
+            html {
+              visibility: hidden;
+            }
+            html.css-loaded {
+              visibility: visible;
+            }
+            body > main,
+            body > header,
+            body > footer {
+              opacity: 0;
+              transition: opacity 0.3s ease;
+            }
+            body.preloader-hidden > main,
+            body.preloader-hidden > header,
+            body.preloader-hidden > footer {
+              opacity: 1;
+            }
+            #preloader-active {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: 999999;
+              background-color: #f7f7f7;
+            }
+          `
+        }} />
+      </head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <HeadLinks />
+        <StructuredData />
+        {children}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
