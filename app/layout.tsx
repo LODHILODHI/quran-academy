@@ -112,17 +112,33 @@ export default function RootLayout({
               left: 0;
               width: 100%;
               height: 100%;
-              z-index: 999999;
+              z-index: 1;
               background-color: #f7f7f7;
               pointer-events: none;
+            }
+            /* Hero section MUST be above preloader for LCP detection */
+            body > main .slider-area {
+              position: relative;
+              z-index: 10 !important;
             }
             /* Ensure hero image is always visible for LCP */
             .slider-area img,
             .slider-area [data-nextjs-image],
-            .slider-area picture {
+            .slider-area picture,
+            .slider-area .single-slider {
               visibility: visible !important;
               opacity: 1 !important;
               display: block !important;
+              position: relative;
+              z-index: 10 !important;
+            }
+            /* Hero text must also be visible */
+            .slider-area .hero__caption,
+            .slider-area h1,
+            .slider-area h2,
+            .slider-area p {
+              visibility: visible !important;
+              opacity: 1 !important;
             }
           `
         }} />

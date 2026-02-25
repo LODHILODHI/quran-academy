@@ -52,7 +52,8 @@ import type { Metadata } from "next";
                   height: "100vh",
                   minHeight: "100vh",
                   width: "100%",
-                  overflow: "hidden"
+                  overflow: "hidden",
+                  zIndex: 10
                 }}
               >
                 {/* Hero Image with Next.js Image component for better LCP */}

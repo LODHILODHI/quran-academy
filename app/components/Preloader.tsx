@@ -18,16 +18,17 @@ export default function Preloader() {
 
       const preloader = document.getElementById("preloader-active");
       if (preloader) {
+        // Hide preloader immediately to allow LCP detection
         setTimeout(() => {
-          preloader.style.transition = "opacity 0.5s ease";
+          preloader.style.transition = "opacity 0.3s ease";
           preloader.style.opacity = "0";
           setTimeout(() => {
             preloader.style.display = "none";
             document.body.style.overflow = "visible";
             document.body.classList.add("preloader-hidden");
             setIsLoading(false);
-          }, 500);
-        }, 450);
+          }, 300);
+        }, 100); // Reduced from 450ms to 100ms for faster LCP
       }
     };
 
@@ -83,7 +84,7 @@ export default function Preloader() {
           }
         `
       }} />
-      <div id="preloader-active" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: 999999, backgroundColor: "#f7f7f7" }}>
+      <div id="preloader-active" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: 1, backgroundColor: "#f7f7f7" }}>
         <div className="preloader d-flex align-items-center justify-content-center" style={{ width: "100%", height: "100%" }}>
           <div className="preloader-inner position-relative">
             <div className="simple-loader"></div>
