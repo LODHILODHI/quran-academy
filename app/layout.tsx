@@ -87,26 +87,21 @@ export default function RootLayout({
         <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico" />
         <style dangerouslySetInnerHTML={{
           __html: `
-            /* Prevent FOUC - but allow LCP element to be visible */
-            html {
-              visibility: hidden;
-            }
-            html.css-loaded {
-              visibility: visible;
-            }
-            /* Don't hide hero section - it's the LCP element */
-            body > main > div:first-child,
-            body > main .slider-area {
+            /* Don't hide html - it prevents LCP detection */
+            /* Hero section (LCP element) must be visible immediately */
+            body > main .slider-area,
+            body > main .slider-area *,
+            .slider-area,
+            .slider-area * {
               visibility: visible !important;
               opacity: 1 !important;
             }
-            body > main,
+            /* Only hide non-critical content */
             body > header,
             body > footer {
               opacity: 0;
               transition: opacity 0.3s ease;
             }
-            body.preloader-hidden > main,
             body.preloader-hidden > header,
             body.preloader-hidden > footer {
               opacity: 1;
@@ -119,6 +114,15 @@ export default function RootLayout({
               height: 100%;
               z-index: 999999;
               background-color: #f7f7f7;
+              pointer-events: none;
+            }
+            /* Ensure hero image is always visible for LCP */
+            .slider-area img,
+            .slider-area [data-nextjs-image],
+            .slider-area picture {
+              visibility: visible !important;
+              opacity: 1 !important;
+              display: block !important;
             }
           `
         }} />
