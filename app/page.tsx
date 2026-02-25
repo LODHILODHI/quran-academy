@@ -60,7 +60,8 @@ import type { Metadata } from "next";
                   alt="Learn Quran Online with Certified Tutors"
                   fill
                   priority
-                  quality={85}
+                  quality={75}
+                  fetchPriority="high"
                   style={{
                     objectFit: "cover",
                     objectPosition: "center center"

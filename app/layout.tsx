@@ -74,7 +74,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload critical CSS for faster rendering */}
+        {/* Preload critical resources for faster LCP */}
+        <link rel="preload" href="/assets/img/hero/learn-quran-online-banner.jpg.jpg" as="image" />
         <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" />
         <link rel="preload" href="/assets/css/style.css" as="style" />
         

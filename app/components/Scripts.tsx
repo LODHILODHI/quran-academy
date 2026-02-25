@@ -85,11 +85,20 @@ export default function Scripts() {
           });
         };
 
-        // Delay non-critical scripts to improve initial render
-        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-          (window as any).requestIdleCallback(loadNonCriticalScripts, { timeout: 2000 });
-        } else {
-          setTimeout(loadNonCriticalScripts, 100);
+        // Delay non-critical scripts significantly to improve initial render
+        // Load only after page is interactive
+        if (typeof window !== "undefined") {
+          if ("requestIdleCallback" in window) {
+            (window as any).requestIdleCallback(loadNonCriticalScripts, { timeout: 3000 });
+          } else if (document.readyState === "complete") {
+            // If page already loaded, wait a bit more
+            setTimeout(loadNonCriticalScripts, 500);
+          } else {
+            // Wait for page to be fully loaded
+            window.addEventListener("load", () => {
+              setTimeout(loadNonCriticalScripts, 500);
+            });
+          }
         }
       } catch (error) {
         console.error("Error loading scripts:", error);
