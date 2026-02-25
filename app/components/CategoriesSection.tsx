@@ -21,7 +21,8 @@ export default function CategoriesSection() {
                   src="/assets/img/gallery/noorani-qaida.jpg" 
                   alt="Noorani Qaida Course" 
                   fill
-                  quality={85}
+                  quality={70}
+                  loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{objectFit: "cover"}}
                 />
@@ -82,7 +83,8 @@ export default function CategoriesSection() {
                   src="/assets/img/gallery/quran-reading.jpg" 
                   alt="Quran Reading Course" 
                   fill
-                  quality={85}
+                  quality={70}
+                  loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{objectFit: "cover"}}
                 />
@@ -143,7 +145,8 @@ export default function CategoriesSection() {
                   src="/assets/img/gallery/quran-memorization.jpg" 
                   alt="Quran Memorization Course" 
                   fill
-                  quality={85}
+                  quality={70}
+                  loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{objectFit: "cover"}}
                 />
@@ -204,7 +207,8 @@ export default function CategoriesSection() {
                   src="/assets/img/gallery/tajweed-course.jpg" 
                   alt="Tajweed Course" 
                   fill
-                  quality={85}
+                  quality={70}
+                  loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{objectFit: "cover"}}
                 />
@@ -265,7 +269,8 @@ export default function CategoriesSection() {
                   src="/assets/img/gallery/translation-tafseer.jpg" 
                   alt="Translation & Tafseer Course" 
                   fill
-                  quality={85}
+                  quality={70}
+                  loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{objectFit: "cover"}}
                 />
@@ -326,7 +331,8 @@ export default function CategoriesSection() {
                   src="/assets/img/gallery/islamic-studies.jpg" 
                   alt="Islamic Studies Course" 
                   fill
-                  quality={85}
+                  quality={70}
+                  loading="lazy"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{objectFit: "cover"}}
                 />

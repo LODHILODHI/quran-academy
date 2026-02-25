@@ -35,26 +35,69 @@ export default function HomepageScripts() {
             // Bootstrap for layout (load async, non-blocking)
             loadScript("/assets/js/bootstrap.min.js");
             
-            // Load remaining scripts much later
-            const loadNonCriticalScripts = () => {
-              Promise.all([
-                loadScript("/assets/js/jquery.slicknav.min.js"),
-                loadScript("/assets/js/wow.min.js"),
-                loadScript("/assets/js/jquery.sticky.js"),
-              ]).then(() => {
-                // Load main.js last
-                loadScript("/assets/js/main.js");
-              });
+            // Load only absolutely necessary scripts for homepage
+            // Skip main.js initially - it contains 748 KiB unused code
+            // Only load what's needed for basic functionality
+            const loadMinimalScripts = () => {
+              // Only load slicknav for mobile menu - load much later
+              if (typeof window !== "undefined") {
+                if ("requestIdleCallback" in window) {
+                  (window as any).requestIdleCallback(() => {
+                    loadScript("/assets/js/jquery.slicknav.min.js");
+                  }, { timeout: 10000 });
+                  
+                  // Load main.js ONLY on user interaction (scroll, click, etc.)
+                  // This prevents loading 748 KiB unused code on initial page load
+                  let mainJsLoaded = false;
+                  const loadMainJsOnInteraction = () => {
+                    if (!mainJsLoaded) {
+                      mainJsLoaded = true;
+                      loadScript("/assets/js/main.js");
+                      // Remove listeners after loading
+                      window.removeEventListener("scroll", loadMainJsOnInteraction);
+                      window.removeEventListener("click", loadMainJsOnInteraction);
+                      window.removeEventListener("touchstart", loadMainJsOnInteraction);
+                    }
+                  };
+                  
+                  // Load main.js only when user interacts
+                  window.addEventListener("scroll", loadMainJsOnInteraction, { once: true, passive: true });
+                  window.addEventListener("click", loadMainJsOnInteraction, { once: true });
+                  window.addEventListener("touchstart", loadMainJsOnInteraction, { once: true, passive: true });
+                  
+                  // Fallback: load after 30 seconds if no interaction
+                  setTimeout(() => {
+                    if (!mainJsLoaded) {
+                      loadMainJsOnInteraction();
+                    }
+                  }, 30000);
+                } else {
+                  window.addEventListener("load", () => {
+                    setTimeout(() => {
+                      loadScript("/assets/js/jquery.slicknav.min.js");
+                      // Load main.js on interaction
+                      let mainJsLoaded = false;
+                      const loadMainJs = () => {
+                        if (!mainJsLoaded) {
+                          mainJsLoaded = true;
+                          loadScript("/assets/js/main.js");
+                          window.removeEventListener("scroll", loadMainJs);
+                          window.removeEventListener("click", loadMainJs);
+                        }
+                      };
+                      window.addEventListener("scroll", loadMainJs, { once: true, passive: true });
+                      window.addEventListener("click", loadMainJs, { once: true });
+                      setTimeout(() => {
+                        if (!mainJsLoaded) loadMainJs();
+                      }, 30000);
+                    }, 2000);
+                  });
+                }
+              }
             };
 
-            // Delay non-critical scripts significantly
-            if (typeof window !== "undefined") {
-              if ("requestIdleCallback" in window) {
-                (window as any).requestIdleCallback(loadNonCriticalScripts, { timeout: 5000 });
-              } else {
-                setTimeout(loadNonCriticalScripts, 2000);
-              }
-            }
+            // Delay minimal scripts significantly - only after page is fully loaded and idle
+            loadMinimalScripts();
           } else {
             setTimeout(waitForJQuery, 50);
           }
