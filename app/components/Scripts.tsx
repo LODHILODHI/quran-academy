@@ -59,30 +59,38 @@ export default function Scripts() {
         // Now load contact.js after dependencies are ready
         await loadScript("/assets/js/contact.js");
 
-        // Load remaining scripts
-        await Promise.all([
-          loadScript("/assets/js/bootstrap.min.js"),
-          loadScript("/assets/js/jquery.slicknav.min.js"),
-          loadScript("/assets/js/owl.carousel.min.js"),
-          loadScript("/assets/js/slick.min.js"),
-          loadScript("/assets/js/wow.min.js"),
-          loadScript("/assets/js/animated.headline.js"),
-          loadScript("/assets/js/jquery.magnific-popup.js"),
-          loadScript("/assets/js/gijgo.min.js"),
-          loadScript("/assets/js/jquery.nice-select.min.js"),
-          loadScript("/assets/js/jquery.sticky.js"),
-          loadScript("/assets/js/waypoints.min.js"),
-          loadScript("/assets/js/jquery.counterup.min.js"),
-          loadScript("/assets/js/jquery.ajaxchimp.min.js"),
-          loadScript("/assets/js/mail-script.js"),
-        ]);
+        // Delay non-critical scripts to improve initial load
+        // Use requestIdleCallback for better performance, fallback to setTimeout
+        const loadNonCriticalScripts = () => {
+          Promise.all([
+            loadScript("/assets/js/bootstrap.min.js"),
+            loadScript("/assets/js/jquery.slicknav.min.js"),
+            loadScript("/assets/js/owl.carousel.min.js"),
+            loadScript("/assets/js/slick.min.js"),
+            loadScript("/assets/js/wow.min.js"),
+            loadScript("/assets/js/animated.headline.js"),
+            loadScript("/assets/js/jquery.magnific-popup.js"),
+            loadScript("/assets/js/gijgo.min.js"),
+            loadScript("/assets/js/jquery.nice-select.min.js"),
+            loadScript("/assets/js/jquery.sticky.js"),
+            loadScript("/assets/js/waypoints.min.js"),
+            loadScript("/assets/js/jquery.counterup.min.js"),
+            loadScript("/assets/js/jquery.ajaxchimp.min.js"),
+            loadScript("/assets/js/mail-script.js"),
+          ]).then(() => {
+            // Load plugins and main.js last
+            loadScript("/assets/js/plugins.js").then(() => {
+              loadScript("/assets/js/main.js");
+            });
+          });
+        };
 
-        // Load plugins and main.js last
-        await loadScript("/assets/js/plugins.js");
-        await loadScript("/assets/js/main.js");
-        
-        // Small delay to ensure DOM is ready and scripts are fully initialized
-        await new Promise((resolve) => setTimeout(resolve, 50));
+        // Delay non-critical scripts to improve initial render
+        if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+          (window as any).requestIdleCallback(loadNonCriticalScripts, { timeout: 2000 });
+        } else {
+          setTimeout(loadNonCriticalScripts, 100);
+        }
       } catch (error) {
         console.error("Error loading scripts:", error);
       }

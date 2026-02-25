@@ -5,15 +5,20 @@ import HeadLinks from "./components/HeadLinks";
 import Scripts from "./components/Scripts";
 import StructuredData from "./components/StructuredData";
 import WhatsAppButton from "./components/WhatsAppButton";
+import AsyncCSS from "./components/AsyncCSS";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -69,19 +74,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Load CSS files in head for faster rendering */}
+        {/* Preload critical CSS for faster rendering */}
+        <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" />
+        <link rel="preload" href="/assets/css/style.css" as="style" />
+        
+        {/* Load critical CSS files synchronously */}
         <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
-        <link rel="stylesheet" href="/assets/css/slicknav.css" />
-        <link rel="stylesheet" href="/assets/css/flaticon.css" />
-        <link rel="stylesheet" href="/assets/css/gijgo.css" />
-        <link rel="stylesheet" href="/assets/css/animate.min.css" />
-        <link rel="stylesheet" href="/assets/css/magnific-popup.css" />
-        <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css" />
-        <link rel="stylesheet" href="/assets/css/themify-icons.css" />
-        <link rel="stylesheet" href="/assets/css/slick.css" />
-        <link rel="stylesheet" href="/assets/css/nice-select.css" />
         <link rel="stylesheet" href="/assets/css/style.css" />
+        
         <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico" />
         <style dangerouslySetInnerHTML={{
           __html: `
@@ -119,6 +119,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <HeadLinks />
+        <AsyncCSS />
         <StructuredData />
         {children}
         <WhatsAppButton />
