@@ -18,17 +18,17 @@ export default function Preloader() {
 
       const preloader = document.getElementById("preloader-active");
       if (preloader) {
-        // Hide preloader immediately to allow LCP detection
+        // Hide preloader immediately to allow LCP detection - faster for mobile
         setTimeout(() => {
-          preloader.style.transition = "opacity 0.3s ease";
+          preloader.style.transition = "opacity 0.2s ease";
           preloader.style.opacity = "0";
           setTimeout(() => {
             preloader.style.display = "none";
             document.body.style.overflow = "visible";
             document.body.classList.add("preloader-hidden");
             setIsLoading(false);
-          }, 300);
-        }, 100); // Reduced from 450ms to 100ms for faster LCP
+          }, 200);
+        }, 50); // Reduced to 50ms for faster mobile LCP
       }
     };
 

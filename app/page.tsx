@@ -53,7 +53,8 @@ import type { Metadata } from "next";
                   minHeight: "100vh",
                   width: "100%",
                   overflow: "hidden",
-                  zIndex: 10
+                  zIndex: 10,
+                  willChange: "transform"
                 }}
               >
                 {/* Hero Image with Next.js Image component for better LCP */}
@@ -62,7 +63,7 @@ import type { Metadata } from "next";
                   alt="Learn Quran Online with Certified Tutors"
                   fill
                   priority
-                  quality={70}
+                  quality={60}
                   fetchPriority="high"
                   style={{
                     objectFit: "cover",
@@ -84,18 +85,21 @@ import type { Metadata } from "next";
                 <div className="container" style={{position: "relative", zIndex: 2}}>
                   <div className="row align-items-center">
                     <div className="col-xl-6 col-lg-7 col-md-8">
-                      <div className="hero__caption" style={{color: "#fff"}}>
+                      <div className="hero__caption" style={{color: "#fff", opacity: 1, visibility: "visible"}}>
                         <HeroButton />
                         <h1 
                           data-animation="fadeInLeft" 
                           data-delay=".4s"
                           style={{
-                            fontSize: "60px",
+                            fontSize: "clamp(28px, 8vw, 60px)",
                             fontWeight: "700",
                             color: "#ff6b35",
                             marginBottom: "15px",
                             lineHeight: "1.2",
-                            marginTop: "0"
+                            marginTop: "0",
+                            opacity: 1,
+                            visibility: "visible",
+                            animation: "fadeInLeft 1s ease-in-out"
                           }}
                         >
                           Learn Quran Online
@@ -104,12 +108,15 @@ import type { Metadata } from "next";
                           data-animation="fadeInLeft" 
                           data-delay=".5s"
                           style={{
-                            fontSize: "60px",
+                            fontSize: "clamp(28px, 8vw, 60px)",
                             fontWeight: "700",
                             color: "#fff",
                             marginBottom: "25px",
                             lineHeight: "1.2",
-                            marginTop: "0"
+                            marginTop: "0",
+                            opacity: 1,
+                            visibility: "visible",
+                            animation: "fadeInLeft 1s ease-in-out 0.2s both"
                           }}
                         >
                           with Certified Tutors
@@ -118,12 +125,15 @@ import type { Metadata } from "next";
                           data-animation="fadeInLeft" 
                           data-delay=".6s"
                           style={{
-                            fontSize: "24px",
+                            fontSize: "clamp(16px, 4vw, 24px)",
                             color: "#fff",
                             marginBottom: "0",
                             lineHeight: "1.5",
                             marginTop: "0",
-                            whiteSpace: "nowrap"
+                            whiteSpace: "nowrap",
+                            opacity: 1,
+                            visibility: "visible",
+                            animation: "fadeInLeft 1s ease-in-out 0.4s both"
                           }}
                         >
                           Quran Classes for Kids & Adults Worldwide

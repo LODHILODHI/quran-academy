@@ -74,15 +74,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload critical resources for faster LCP */}
+        {/* Preload critical resources for faster LCP - Mobile optimized */}
         <link rel="preload" href="/assets/img/hero/learn-quran-online-banner.jpg.jpg" as="image" fetchPriority="high" />
         <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" />
         <link rel="preload" href="/assets/css/style.css" as="style" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         
-        {/* Load critical CSS files synchronously */}
-        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/assets/css/style.css" />
+        {/* Load critical CSS files synchronously - Mobile optimized with media queries */}
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css" media="all" />
+        <link rel="stylesheet" href="/assets/css/style.css" media="all" />
         
         <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico" />
         <style dangerouslySetInnerHTML={{
@@ -139,6 +139,33 @@ export default function RootLayout({
             .slider-area p {
               visibility: visible !important;
               opacity: 1 !important;
+            }
+            /* CSS animation for hero text (no WOW.js dependency) */
+            @keyframes fadeInLeft {
+              from {
+                opacity: 0;
+                transform: translateX(-30px);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+            /* Ensure hero text is visible even without WOW.js */
+            .hero__caption [data-animation] {
+              opacity: 1 !important;
+              visibility: visible !important;
+            }
+            /* Mobile optimizations - reduce font loading delay */
+            @media (max-width: 768px) {
+              body {
+                font-display: swap;
+              }
+              /* Ensure hero section loads faster on mobile */
+              .slider-area {
+                min-height: 100vh;
+                height: 100vh;
+              }
             }
           `
         }} />
