@@ -1,46 +1,136 @@
+'use client';
+
+import { useEffect } from "react";
+
 export default function TestimonialsSection() {
+  useEffect(() => {
+    // Initialize carousel after scripts are loaded
+    const initCarousel = () => {
+      if (typeof window !== 'undefined' && (window as any).jQuery) {
+        const $ = (window as any).jQuery;
+        const testimonial = $('.h1-testimonial-active');
+        
+        if (testimonial.length && typeof testimonial.slick === 'function') {
+          // Destroy existing carousel if any
+          if (testimonial.hasClass('slick-initialized')) {
+            testimonial.slick('unslick');
+          }
+          
+          // Initialize carousel
+          testimonial.slick({
+            dots: false,
+            infinite: true,
+            speed: 1000,
+            autoplay: true,
+            autoplaySpeed: 5000,
+            loop: true,
+            arrows: true,
+            prevArrow: '<button type="button" class="slick-prev"><i class="ti-angle-left"></i></button>',
+            nextArrow: '<button type="button" class="slick-next"><i class="ti-angle-right"></i></button>',
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            fade: true,
+            cssEase: 'linear',
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  infinite: true,
+                  dots: false,
+                  arrows: true
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  arrows: false
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1,
+                  arrows: false
+                }
+              }
+            ]
+          });
+        }
+      }
+    };
+
+    // Try to initialize immediately
+    initCarousel();
+
+    // Also try after a delay to ensure scripts are loaded
+    const timer = setTimeout(() => {
+      initCarousel();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const testimonials = [
+    {
+      id: 1,
+      text: "My daughter has been learning Quran with Quran Academy for 6 months now. The teachers are patient, certified, and make learning fun. She has memorized so much already! Highly recommended.",
+      name: "Sarah Ahmed",
+      role: "Parent from USA"
+    },
+    {
+      id: 2,
+      text: "As an adult learner, I was nervous about starting Quran classes online. But the flexible schedule and excellent teaching methods have made it so easy. I'm now reading Quran with proper Tajweed!",
+      name: "Mohammed Ali",
+      role: "Student from UK"
+    },
+    {
+      id: 3,
+      text: "Best online Quran academy! My son completed Noorani Qaida and is now reading Quran beautifully. The teachers are from Arab countries and teach with love and dedication.",
+      name: "Fatima Khan",
+      role: "Parent from Canada"
+    },
+    {
+      id: 4,
+      text: "I enrolled my kids in Islamic Studies classes. They love the interactive sessions and are learning so much about Islam. The teachers make every lesson engaging and meaningful.",
+      name: "Ayesha Malik",
+      role: "Parent from Australia"
+    },
+    {
+      id: 5,
+      text: "The Hifz program is excellent! My daughter is memorizing Quran systematically with regular revision. The teachers track progress and provide personalized guidance. Amazing experience!",
+      name: "Hassan Rahman",
+      role: "Parent from UAE"
+    }
+  ];
+
   return (
     <div className="testimonial-area fix pt-180 pb-180 section-bg" style={{backgroundImage: "url('/assets/img/gallery/section_bg03.png')"}}>
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-xl-8 col-lg-9 col-md-9">
             <div className="h1-testimonial-active">
-              <div className="single-testimonial pt-65">
-                <div className="testimonial-icon mb-45">
-                  <img src="/assets/img/gallery/testimonial.png" className="ani-btn" alt="" />
-                </div>
-                <div className="testimonial-caption text-center">
-                  <p>You can&apos;t succeed if you just do what others do and follow the well-worn path. You need to create a new and original path for yourself.</p>
-                  <div className="testimonial-ratting">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  <div className="rattiong-caption">
-                    <span>Clifford Frazier<span> - Colorlib Themes</span></span>
-                  </div>
-                </div>
-              </div>
-              <div className="single-testimonial pt-65">
-                <div className="testimonial-icon mb-45">
-                  <img src="/assets/img/gallery/testimonial.png" className="ani-btn" alt="" />
-                </div>
-                <div className="testimonial-caption text-center">
-                  <p>You can&apos;t succeed if you just do what others do and follow the well-worn path. You need to create a new and original path for yourself.</p>
-                  <div className="testimonial-ratting">
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                    <i className="fas fa-star"></i>
-                  </div>
-                  <div className="rattiong-caption">
-                    <span>Clifford Frazier<span> - Colorlib Themes</span></span>
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="single-testimonial pt-65">
+                  <div className="testimonial-caption text-center">
+                    <p>{testimonial.text}</p>
+                    <div className="testimonial-ratting">
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                      <i className="fas fa-star"></i>
+                    </div>
+                    <div className="rattiong-caption">
+                      <span>{testimonial.name}<span> - {testimonial.role}</span></span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

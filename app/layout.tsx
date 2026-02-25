@@ -4,6 +4,7 @@ import "./globals.css";
 import HeadLinks from "./components/HeadLinks";
 import Scripts from "./components/Scripts";
 import StructuredData from "./components/StructuredData";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,16 @@ export const metadata: Metadata = {
     description: "Special Quran classes for kids! Learn Noorani Qaida, Quran reading, Tajweed, Islamic studies with Arab Sheikhs. 3 days free trial with certified tutors.",
     type: "website",
     locale: "en_US",
+    url: "https://quran-academy-two.vercel.app",
+    siteName: "Quran Academy",
+    images: [
+      {
+        url: "/assets/img/logo/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Quran Academy - Online Quran Classes",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -110,6 +121,7 @@ export default function RootLayout({
         <HeadLinks />
         <StructuredData />
         {children}
+        <WhatsAppButton />
         <Scripts />
       </body>
     </html>

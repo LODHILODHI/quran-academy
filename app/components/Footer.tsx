@@ -66,7 +66,19 @@ export default function Footer() {
             </div>
             <div className="footer-bottom">
               <div className="row d-flex align-items-center">
-                <div className="col-lg-12">
+                <div className="col-lg-6 col-md-6">
+                  <div className="footer-contact-info">
+                    <p style={{margin: "10px 0", fontSize: "16px", color: "#333"}}>
+                      <i className="ti-mobile" style={{marginRight: "8px", color: "#ff6b35"}}></i>
+                      <a href="tel:+923285285744" style={{color: "#333", textDecoration: "none"}}>+92 328 5285744</a>
+                    </p>
+                    <p style={{margin: "10px 0", fontSize: "16px", color: "#333"}}>
+                      <i className="ti-email" style={{marginRight: "8px", color: "#ff6b35"}}></i>
+                      <a href="mailto:lodhihasnainhaider@gmail.com" style={{color: "#333", textDecoration: "none"}}>lodhihasnainhaider@gmail.com</a>
+                    </p>
+                  </div>
+                </div>
+                <div className="col-lg-6 col-md-6">
                   <div className="footer-copy-right text-center">
                     <p>
                       Copyright &copy;{new Date().getFullYear()} All rights reserved | This template is made with <i className="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" rel="noopener noreferrer">Colorlib</a>

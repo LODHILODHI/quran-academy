@@ -146,6 +146,7 @@ header:has(.sticky-bar) .header-area {
   color: #ff6b35 !important;
 }
 
+
 /* Header navigation right alignment */
 .header-bottom .menu-wrapper {
   display: flex !important;
@@ -200,6 +201,14 @@ header:has(.sticky-bar) .header-area {
 
 .header-bottom .main-menu ul#navigation li ul.submenu li a:hover {
   color: #ff6b35 !important;
+  padding-left: 25px !important;
+}
+
+/* Show submenu on hover */
+.header-bottom .main-menu ul#navigation li:hover > ul.submenu {
+  visibility: visible !important;
+  opacity: 1 !important;
+  top: 100% !important;
 }
 
 /* Footer styling - white background with black text */

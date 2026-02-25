@@ -65,15 +65,31 @@ export default function Preloader() {
   }, []);
 
   return (
-    <div id="preloader-active" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: 999999, backgroundColor: "#f7f7f7" }}>
-      <div className="preloader d-flex align-items-center justify-content-center" style={{ width: "100%", height: "100%" }}>
-        <div className="preloader-inner position-relative">
-          <div className="preloader-circle"></div>
-          <div className="preloader-img pere-text">
-            <img src="/assets/img/logo/loder.png" alt="" />
+    <>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          @keyframes preloader-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+          .simple-loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #ff6b35;
+            border-radius: 50%;
+            animation: preloader-spin 1s linear infinite;
+            margin: 0 auto;
+          }
+        `
+      }} />
+      <div id="preloader-active" style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: 999999, backgroundColor: "#f7f7f7" }}>
+        <div className="preloader d-flex align-items-center justify-content-center" style={{ width: "100%", height: "100%" }}>
+          <div className="preloader-inner position-relative">
+            <div className="simple-loader"></div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

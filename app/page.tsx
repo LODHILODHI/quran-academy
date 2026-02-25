@@ -1,11 +1,12 @@
-  import Link from "next/link";
-  import Image from "next/image";
-  import Preloader from "./components/Preloader";
-  import Header from "./components/Header";
-  import Footer from "./components/Footer";
-  import CategoriesSection from "./components/CategoriesSection";
-  import TestimonialsSection from "./components/TestimonialsSection";
-  import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
+import Preloader from "./components/Preloader";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import CategoriesSection from "./components/CategoriesSection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import HeroButton from "./components/HeroButton";
+import type { Metadata } from "next";
 
   export const metadata: Metadata = {
     title: "Online Quran Classes for Kids | Noorani Qaida, Tajweed | Free Trial - Quran Academy",
@@ -72,22 +73,7 @@
                   <div className="row align-items-center">
                     <div className="col-xl-6 col-lg-7 col-md-8">
                       <div className="hero__caption" style={{color: "#fff"}}>
-                        <span 
-                          data-animation="fadeInLeft" 
-                          data-delay=".2s"
-                          style={{
-                            fontSize: "28px",
-                            fontWeight: "500",
-                            color: "#fff",
-                            marginBottom: "30px",
-                            display: "block",
-                            textTransform: "uppercase",
-                            letterSpacing: "1px",
-                            lineHeight: "1.2"
-                          }}
-                        >
-                          Start Free Trial / Enroll Now
-                        </span>
+                        <HeroButton />
                         <h1 
                           data-animation="fadeInLeft" 
                           data-delay=".4s"
