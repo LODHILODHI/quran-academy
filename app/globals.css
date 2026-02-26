@@ -32,7 +32,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  overflow: hidden; /* Prevent scrolling while preloader is active */
+  overflow: visible; /* No preloader blocking */
 }
 
 /* Headings use Poppins */

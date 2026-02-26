@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Preloader from "./components/Preloader";
+import Image from "next/image";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CategoriesSection from "./components/CategoriesSection";
@@ -37,9 +37,6 @@ import type { Metadata } from "next";
       <>
         {/* Lock hero text position - prevent scroll movement */}
         <HeroTextLock />
-        
-        {/* Preloader */}
-        <Preloader />
 
         {/* Header */}
         <Header />
@@ -63,25 +60,19 @@ import type { Metadata } from "next";
                   left: 0
                 }}
               >
-                {/* Hero Image - Using regular img tag for better LCP detection */}
-                <img
-                  src="/assets/img/hero/learn-quran-online-banner.jpg.jpg"
+                {/* Hero Image - Next.js Image with priority for LCP optimization */}
+                <Image
+                  src="/assets/img/hero/learn-quran-online-banner.jpg"
                   alt="Learn Quran Online with Certified Tutors"
-                  width={1920}
-                  height={1080}
+                  fill
+                  priority
+                  quality={85}
                   fetchPriority="high"
-                  loading="eager"
-                  decoding="async"
+                  sizes="100vw"
                   style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
                     objectFit: "cover",
                     objectPosition: "center center",
-                    zIndex: 0,
-                    display: "block"
+                    zIndex: 0
                   }}
                 />
                 {/* Dark overlay for better text readability */}

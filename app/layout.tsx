@@ -88,8 +88,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload critical resources for faster LCP - Mobile optimized */}
-        <link rel="preload" href="/assets/img/hero/learn-quran-online-banner.jpg.jpg" as="image" fetchPriority="high" />
+        {/* Preload critical hero image for faster LCP */}
+        <link rel="preload" href="/assets/img/hero/learn-quran-online-banner.jpg" as="image" fetchPriority="high" />
         <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" />
         <link rel="preload" href="/assets/css/style.css" as="style" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -110,29 +110,8 @@ export default function RootLayout({
               visibility: visible !important;
               opacity: 1 !important;
             }
-            /* Only hide non-critical content */
-            body > header,
-            body > footer {
-              opacity: 0;
-              transition: opacity 0.3s ease;
-            }
-            body.preloader-hidden > header,
-            body.preloader-hidden > footer {
-              opacity: 1;
-            }
-            #preloader-active {
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              z-index: 1;
-              background-color: #f7f7f7;
-              pointer-events: none;
-              /* Ensure preloader doesn't block LCP detection */
-              visibility: visible;
-            }
-            /* Hero section MUST be above preloader for LCP detection */
+            /* Preloader removed - no longer blocking LCP */
+            /* Hero section - LCP element */
             body > main .slider-area {
               position: relative;
               z-index: 10 !important;
@@ -147,7 +126,9 @@ export default function RootLayout({
             }
             /* Ensure hero image is always visible for LCP - Critical for LCP detection */
             .slider-area img,
-            .slider-area .single-slider img {
+            .slider-area [data-nextjs-image],
+            .slider-area picture,
+            .slider-area picture img {
               visibility: visible !important;
               opacity: 1 !important;
               display: block !important;
@@ -155,12 +136,6 @@ export default function RootLayout({
               width: 100% !important;
               height: 100% !important;
               z-index: 0 !important;
-              /* Critical: Ensure image is detected as LCP element */
-              content-visibility: auto !important;
-            }
-            /* Ensure image loads immediately - no lazy loading for LCP element */
-            .slider-area img[loading="eager"] {
-              content-visibility: auto !important;
             }
             /* Hero text must also be visible - override any CSS that hides it */
             .slider-area .hero__caption,
