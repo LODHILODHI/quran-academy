@@ -68,33 +68,12 @@ p, span, div, a, li {
   font-family: var(--font-body), 'Inter', sans-serif;
 }
 
-body.preloader-hidden {
-  overflow: visible;
-}
-
-/* Hide content until CSS and preloader are ready */
+/* Preloader removed - all content always visible */
 body > main,
 body > header,
 body > footer {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-body.preloader-hidden > main,
-body.preloader-hidden > header,
-body.preloader-hidden > footer {
-  opacity: 1;
-}
-
-/* Prevent flash of unstyled content */
-#preloader-active {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 999999;
-  background-color: #f7f7f7;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 /* Slider fallback styles - ensure first slide is visible before Slick initializes */
