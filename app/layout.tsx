@@ -8,29 +8,29 @@ import StructuredData from "./components/StructuredData";
 import WhatsAppButton from "./components/WhatsAppButton";
 import AsyncCSS from "./components/AsyncCSS";
 
-// Headings Font - Poppins (Modern, Clean, Professional)
+// Headings Font - Poppins (Optimized: only essential weights for mobile)
 const poppins = Poppins({
   variable: "--font-headings",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["600", "700"], // Reduced from 5 to 2 weights for mobile performance
   display: "swap",
   preload: true,
 });
 
-// Body Font - Inter (Clean, Highly Readable)
+// Body Font - Inter (Optimized: only essential weights)
 const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"], // Reduced from 4 to 2 weights for mobile performance
   display: "swap",
   preload: true,
 });
 
-// Arabic Font - Amiri (Beautiful for Quranic/Arabic text)
+// Arabic Font - Amiri (Optimized: only regular weight)
 const amiri = Amiri({
   variable: "--font-arabic",
   subsets: ["arabic", "latin"],
-  weight: ["400", "700"],
+  weight: ["400"], // Reduced from 2 to 1 weight for mobile performance
   display: "swap",
   preload: true,
 });
@@ -88,13 +88,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload critical hero image for faster LCP */}
+        {/* Preload critical hero image for faster LCP - ONLY image preload (CSS already loaded synchronously) */}
         <link rel="preload" href="/assets/img/hero/learn-quran-online-banner.jpg.jpg" as="image" fetchPriority="high" />
-        <link rel="preload" href="/assets/css/bootstrap.min.css" as="style" />
-        <link rel="preload" href="/assets/css/style.css" as="style" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         
-        {/* Load critical CSS files synchronously - Mobile optimized with media queries */}
+        {/* Load critical CSS files synchronously - No duplicate preload needed */}
         <link rel="stylesheet" href="/assets/css/bootstrap.min.css" media="all" />
         <link rel="stylesheet" href="/assets/css/style.css" media="all" />
         
