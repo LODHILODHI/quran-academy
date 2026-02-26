@@ -62,7 +62,7 @@ import type { Metadata } from "next";
               >
                 {/* Hero Image - Next.js Image with priority for LCP optimization */}
                 <Image
-                  src="/assets/img/hero/learn-quran-online-banner.jpg"
+                  src="/assets/img/hero/learn-quran-online-banner.jpg.jpg"
                   alt="Learn Quran Online with Certified Tutors"
                   fill
                   priority
