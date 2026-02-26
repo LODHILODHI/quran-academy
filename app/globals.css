@@ -155,24 +155,6 @@ header:has(.sticky-bar) .header-area {
   text-shadow: none !important;
 }
 
-/* Logo styling */
-.logo-text {
-  display: none;
-}
-
-@media (min-width: 768px) {
-  .logo-text {
-    display: inline !important;
-  }
-}
-
-/* Logo color on scroll */
-.header-bottom.sticky-bar .logo-text,
-.header-bottom.sticky-bar [style*="color: #fff"] {
-  color: #091a23 !important;
-  text-shadow: none !important;
-}
-
 .header-bottom .main-menu ul#navigation li a:hover {
   color: #ff6b35 !important;
 }
