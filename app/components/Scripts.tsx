@@ -102,7 +102,7 @@ export default function Scripts() {
             setTimeout(loadNonCriticalScripts, 500);
           } else {
             // Wait for page to be fully loaded
-            window.addEventListener("load", () => {
+            (window as Window).addEventListener("load", () => {
               setTimeout(loadNonCriticalScripts, 500);
             });
           }

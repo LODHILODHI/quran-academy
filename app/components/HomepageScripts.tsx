@@ -78,32 +78,38 @@ export default function HomepageScripts() {
                     }
                   }, 30000);
                 } else {
-                  window.addEventListener("load", () => {
-                    setTimeout(() => {
-                      loadScript("/assets/js/jquery.slicknav.min.js");
-                      // Load main.js on interaction
-                      let mainJsLoaded = false;
-                      const loadMainJs = () => {
-                        if (!mainJsLoaded) {
-                          mainJsLoaded = true;
-                          // Load WOW.js before main.js (main.js needs it)
-                          loadScript("/assets/js/wow.min.js").then(() => {
-                            loadScript("/assets/js/main.js");
-                          }).catch(() => {
-                            // If WOW.js fails, still load main.js (it will handle the error)
-                            loadScript("/assets/js/main.js");
-                          });
-                          window.removeEventListener("scroll", loadMainJs);
-                          window.removeEventListener("click", loadMainJs);
-                        }
-                      };
-                      window.addEventListener("scroll", loadMainJs, { once: true, passive: true });
-                      window.addEventListener("click", loadMainJs, { once: true });
+                  if (typeof window !== "undefined") {
+                    (window as Window).addEventListener("load", () => {
                       setTimeout(() => {
-                        if (!mainJsLoaded) loadMainJs();
-                      }, 30000);
-                    }, 2000);
-                  });
+                        loadScript("/assets/js/jquery.slicknav.min.js");
+                        // Load main.js on interaction
+                        let mainJsLoaded = false;
+                        const loadMainJs = () => {
+                          if (!mainJsLoaded) {
+                            mainJsLoaded = true;
+                            // Load WOW.js before main.js (main.js needs it)
+                            loadScript("/assets/js/wow.min.js").then(() => {
+                              loadScript("/assets/js/main.js");
+                            }).catch(() => {
+                              // If WOW.js fails, still load main.js (it will handle the error)
+                              loadScript("/assets/js/main.js");
+                            });
+                            if (typeof window !== "undefined") {
+                              (window as Window).removeEventListener("scroll", loadMainJs);
+                              (window as Window).removeEventListener("click", loadMainJs);
+                            }
+                          }
+                        };
+                        if (typeof window !== "undefined") {
+                          (window as Window).addEventListener("scroll", loadMainJs, { once: true, passive: true });
+                          (window as Window).addEventListener("click", loadMainJs, { once: true });
+                        }
+                        setTimeout(() => {
+                          if (!mainJsLoaded) loadMainJs();
+                        }, 30000);
+                      }, 2000);
+                    });
+                  }
                 }
               }
             };
@@ -124,7 +130,7 @@ export default function HomepageScripts() {
       if ("requestIdleCallback" in window) {
         (window as any).requestIdleCallback(loadEssentialScripts, { timeout: 3000 });
       } else {
-        window.addEventListener("load", () => {
+        (window as Window).addEventListener("load", () => {
           setTimeout(loadEssentialScripts, 1000);
         });
       }

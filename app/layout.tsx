@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import HeadLinks from "./components/HeadLinks";
 import Scripts from "./components/Scripts";
@@ -230,6 +231,7 @@ export default function RootLayout({
         {children}
         <WhatsAppButton />
         <Scripts />
+        <SpeedInsights />
       </body>
     </html>
   );
