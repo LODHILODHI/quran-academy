@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins, Inter, Amiri } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import HeadLinks from "./components/HeadLinks";
@@ -8,16 +8,29 @@ import StructuredData from "./components/StructuredData";
 import WhatsAppButton from "./components/WhatsAppButton";
 import AsyncCSS from "./components/AsyncCSS";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Headings Font - Poppins (Modern, Clean, Professional)
+const poppins = Poppins({
+  variable: "--font-headings",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   preload: true,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Body Font - Inter (Clean, Highly Readable)
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  preload: true,
+});
+
+// Arabic Font - Amiri (Beautiful for Quranic/Arabic text)
+const amiri = Amiri({
+  variable: "--font-arabic",
+  subsets: ["arabic", "latin"],
+  weight: ["400", "700"],
   display: "swap",
   preload: true,
 });
@@ -256,7 +269,7 @@ export default function RootLayout({
         }} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} ${inter.variable} ${amiri.variable} antialiased`}
       >
         <HeadLinks />
         <AsyncCSS />
