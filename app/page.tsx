@@ -46,9 +46,9 @@ import type { Metadata } from "next";
         <Header />
 
         <main>
-          {/* Slider Area */}
-          <div className="slider-area" style={{margin: 0, padding: 0, position: "relative", transform: "none"}}>
-            <div className="slider-active" style={{height: "100vh", margin: 0, padding: 0, position: "relative", transform: "none"}}>
+          {/* Slider Area - LCP Element */}
+          <div className="slider-area" style={{margin: 0, padding: 0, position: "relative", transform: "none", minHeight: "100vh"}}>
+            <div className="slider-active" style={{height: "100vh", margin: 0, padding: 0, position: "relative", transform: "none", minHeight: "100vh"}}>
               <div 
                 className="single-slider slider-height d-flex align-items-center"
                 style={{
@@ -64,20 +64,39 @@ import type { Metadata } from "next";
                   left: 0
                 }}
               >
-                {/* Hero Image with Next.js Image component for better LCP */}
-                <Image
-                  src="/assets/img/hero/learn-quran-online-banner.jpg.jpg"
-                  alt="Learn Quran Online with Certified Tutors"
-                  fill
-                  priority
-                  quality={60}
-                  fetchPriority="high"
+                {/* Hero Image with Next.js Image component for better LCP - Must be first element for LCP detection */}
+                <div 
                   style={{
-                    objectFit: "cover",
-                    objectPosition: "center center"
+                    position: "absolute", 
+                    top: 0, 
+                    left: 0, 
+                    width: "100%", 
+                    height: "100%", 
+                    zIndex: 0,
+                    minHeight: "100vh",
+                    minWidth: "100vw"
                   }}
-                  sizes="100vw"
-                />
+                  data-lcp-candidate="true"
+                >
+                  <Image
+                    src="/assets/img/hero/learn-quran-online-banner.jpg.jpg"
+                    alt="Learn Quran Online with Certified Tutors"
+                    fill
+                    priority
+                    quality={75}
+                    fetchPriority="high"
+                    unoptimized={false}
+                    style={{
+                      objectFit: "cover",
+                      objectPosition: "center center",
+                      position: "absolute",
+                      top: 0,
+                      left: 0
+                    }}
+                    sizes="100vw"
+                    loading="eager"
+                  />
+                </div>
                 {/* Dark overlay for better text readability */}
                 <div style={{
                   position: "absolute",

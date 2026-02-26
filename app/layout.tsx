@@ -116,22 +116,42 @@ export default function RootLayout({
               z-index: 1;
               background-color: #f7f7f7;
               pointer-events: none;
+              /* Ensure preloader doesn't block LCP detection */
+              visibility: visible;
             }
             /* Hero section MUST be above preloader for LCP detection */
             body > main .slider-area {
               position: relative;
               z-index: 10 !important;
+              /* Critical: Ensure hero is visible for LCP */
+              visibility: visible !important;
+              opacity: 1 !important;
             }
-            /* Ensure hero image is always visible for LCP */
+            /* Ensure main element doesn't block LCP */
+            body > main {
+              position: relative;
+              z-index: 10 !important;
+            }
+            /* Ensure hero image is always visible for LCP - Critical for LCP detection */
             .slider-area img,
             .slider-area [data-nextjs-image],
             .slider-area picture,
-            .slider-area .single-slider {
+            .slider-area picture img,
+            .slider-area [data-nextjs-image] img,
+            .slider-area .single-slider,
+            .slider-area .single-slider > div {
               visibility: visible !important;
               opacity: 1 !important;
               display: block !important;
-              position: relative;
-              z-index: 10 !important;
+              position: absolute !important;
+              width: 100% !important;
+              height: 100% !important;
+              z-index: 0 !important;
+            }
+            /* Ensure image loads immediately - no lazy loading for LCP element */
+            .slider-area img[loading="eager"],
+            .slider-area [data-nextjs-image] img {
+              content-visibility: auto !important;
             }
             /* Hero text must also be visible - override any CSS that hides it */
             .slider-area .hero__caption,
@@ -208,7 +228,7 @@ export default function RootLayout({
               left: 0 !important;
               transform: translateY(-50%) !important;
             }
-            /* Mobile optimizations - reduce font loading delay */
+            /* Mobile optimizations - reduce font loading delay and improve LCP */
             @media (max-width: 768px) {
               body {
                 font-display: swap;
@@ -217,6 +237,21 @@ export default function RootLayout({
               .slider-area {
                 min-height: 100vh;
                 height: 100vh;
+              }
+              /* Critical: Ensure image loads immediately on mobile for LCP */
+              .slider-area img,
+              .slider-area [data-nextjs-image],
+              .slider-area picture {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                width: 100% !important;
+                height: 100% !important;
+              }
+              /* Reduce render blocking on mobile */
+              body > header,
+              body > footer {
+                content-visibility: auto;
               }
             }
           `
