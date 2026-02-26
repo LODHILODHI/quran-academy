@@ -60,19 +60,25 @@ import type { Metadata } from "next";
                   left: 0
                 }}
               >
-                {/* Hero Image - Next.js Image with priority for LCP optimization */}
-                <Image
+                {/* Hero Image - Using img tag for better compatibility with double extension */}
+                <img
                   src="/assets/img/hero/learn-quran-online-banner.jpg.jpg"
                   alt="Learn Quran Online with Certified Tutors"
-                  fill
-                  priority
-                  quality={85}
+                  width={1920}
+                  height={1080}
                   fetchPriority="high"
-                  sizes="100vw"
+                  loading="eager"
+                  decoding="async"
                   style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
                     objectFit: "cover",
                     objectPosition: "center center",
-                    zIndex: 0
+                    zIndex: 0,
+                    display: "block"
                   }}
                 />
                 {/* Dark overlay for better text readability */}
