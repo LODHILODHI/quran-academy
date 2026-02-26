@@ -52,7 +52,13 @@ export default function HomepageScripts() {
                   const loadMainJsOnInteraction = () => {
                     if (!mainJsLoaded) {
                       mainJsLoaded = true;
-                      loadScript("/assets/js/main.js");
+                      // Load WOW.js before main.js (main.js needs it)
+                      loadScript("/assets/js/wow.min.js").then(() => {
+                        loadScript("/assets/js/main.js");
+                      }).catch(() => {
+                        // If WOW.js fails, still load main.js (it will handle the error)
+                        loadScript("/assets/js/main.js");
+                      });
                       // Remove listeners after loading
                       window.removeEventListener("scroll", loadMainJsOnInteraction);
                       window.removeEventListener("click", loadMainJsOnInteraction);
@@ -80,7 +86,13 @@ export default function HomepageScripts() {
                       const loadMainJs = () => {
                         if (!mainJsLoaded) {
                           mainJsLoaded = true;
-                          loadScript("/assets/js/main.js");
+                          // Load WOW.js before main.js (main.js needs it)
+                          loadScript("/assets/js/wow.min.js").then(() => {
+                            loadScript("/assets/js/main.js");
+                          }).catch(() => {
+                            // If WOW.js fails, still load main.js (it will handle the error)
+                            loadScript("/assets/js/main.js");
+                          });
                           window.removeEventListener("scroll", loadMainJs);
                           window.removeEventListener("click", loadMainJs);
                         }

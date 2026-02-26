@@ -30,7 +30,21 @@ export default function TestimonialsSection() {
             
             // Initialize carousel with error handling
             try {
-              testimonial.slick({
+              // Ensure element is in DOM before initializing
+              if (!testimonial[0] || !document.body.contains(testimonial[0])) {
+                console.warn('Testimonial element not in DOM');
+                return;
+              }
+              
+              // Double check element exists and has children
+              if (testimonial.length === 0 || testimonial.children().length === 0) {
+                console.warn('Testimonial element has no children');
+                return;
+              }
+              
+              // Wrap slick initialization in try-catch to prevent errors
+              try {
+                testimonial.slick({
                 dots: false,
                 infinite: true,
                 speed: 1000,
@@ -73,13 +87,18 @@ export default function TestimonialsSection() {
                     }
                   }
                 ]
-              });
-              // Mark as initialized to prevent main.js from re-initializing
-              if (typeof window !== 'undefined') {
-                (window as any).__testimonialSlickInitialized = true;
+                });
+                // Mark as initialized to prevent main.js from re-initializing
+                if (typeof window !== 'undefined') {
+                  (window as any).__testimonialSlickInitialized = true;
+                }
+              } catch (slickInitError) {
+                console.error('Error in slick initialization:', slickInitError);
+                // Don't throw - just log the error
               }
             } catch (slickError) {
               console.error('Error initializing slick carousel:', slickError);
+              // Don't throw - prevent page crash
             }
           }
         }

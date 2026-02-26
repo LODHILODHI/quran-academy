@@ -11,21 +11,14 @@ export default function HeroButton() {
       style={{
         fontSize: "28px",
         fontWeight: "500",
-        color: "#fff",
+        color: "#ff6b35",
         marginBottom: "30px",
         display: "inline-block",
         textTransform: "uppercase",
         letterSpacing: "1px",
         lineHeight: "1.2",
         textDecoration: "none",
-        transition: "color 0.3s ease",
         cursor: "pointer"
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.color = "#ff6b35";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.color = "#fff";
       }}
     >
       Start Free Trial / Enroll Now

@@ -7,6 +7,7 @@ import CategoriesSection from "./components/CategoriesSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import HeroButton from "./components/HeroButton";
 import HomepageScripts from "./components/HomepageScripts";
+import HeroTextLock from "./components/HeroTextLock";
 import type { Metadata } from "next";
 
   export const metadata: Metadata = {
@@ -35,6 +36,9 @@ import type { Metadata } from "next";
   export default function Home() {
     return (
       <>
+        {/* Lock hero text position - prevent scroll movement */}
+        <HeroTextLock />
+        
         {/* Preloader */}
         <Preloader />
 
@@ -43,8 +47,8 @@ import type { Metadata } from "next";
 
         <main>
           {/* Slider Area */}
-          <div className="slider-area" style={{margin: 0, padding: 0}}>
-            <div className="slider-active" style={{height: "100vh", margin: 0, padding: 0}}>
+          <div className="slider-area" style={{margin: 0, padding: 0, position: "relative", transform: "none"}}>
+            <div className="slider-active" style={{height: "100vh", margin: 0, padding: 0, position: "relative", transform: "none"}}>
               <div 
                 className="single-slider slider-height d-flex align-items-center"
                 style={{
@@ -54,7 +58,10 @@ import type { Metadata } from "next";
                   width: "100%",
                   overflow: "hidden",
                   zIndex: 10,
-                  willChange: "transform"
+                  willChange: "auto",
+                  transform: "none",
+                  top: 0,
+                  left: 0
                 }}
               >
                 {/* Hero Image with Next.js Image component for better LCP */}
@@ -82,14 +89,27 @@ import type { Metadata } from "next";
                   zIndex: 1
                 }}></div>
                 
-                <div className="container" style={{position: "relative", zIndex: 2}}>
-                  <div className="row align-items-center">
-                    <div className="col-xl-6 col-lg-7 col-md-8">
-                      <div className="hero__caption" style={{color: "#fff", opacity: 1, visibility: "visible"}}>
+                {/* Hero Text - Fixed Position */}
+                <div className="hero__caption" style={{
+                  color: "#fff", 
+                  opacity: 1, 
+                  visibility: "visible", 
+                  position: "absolute", 
+                  top: "50%",
+                  left: "0",
+                  transform: "translateY(-50%)",
+                  zIndex: 101, 
+                  display: "block",
+                  width: "100%",
+                  padding: "0 20px",
+                  willChange: "auto",
+                  pointerEvents: "none"
+                }}>
+                  <div className="container" style={{position: "relative", zIndex: 100, width: "100%", pointerEvents: "auto"}}>
+                    <div className="row align-items-center">
+                      <div className="col-xl-6 col-lg-7 col-md-8">
                         <HeroButton />
                         <h1 
-                          data-animation="fadeInLeft" 
-                          data-delay=".4s"
                           style={{
                             fontSize: "clamp(28px, 8vw, 60px)",
                             fontWeight: "700",
@@ -99,14 +119,14 @@ import type { Metadata } from "next";
                             marginTop: "0",
                             opacity: 1,
                             visibility: "visible",
-                            animation: "fadeInLeft 1s ease-in-out"
+                            position: "relative",
+                            transform: "none",
+                            animation: "none"
                           }}
                         >
                           Learn Quran Online
                         </h1>
                         <h2 
-                          data-animation="fadeInLeft" 
-                          data-delay=".5s"
                           style={{
                             fontSize: "clamp(28px, 8vw, 60px)",
                             fontWeight: "700",
@@ -116,14 +136,14 @@ import type { Metadata } from "next";
                             marginTop: "0",
                             opacity: 1,
                             visibility: "visible",
-                            animation: "fadeInLeft 1s ease-in-out 0.2s both"
+                            position: "relative",
+                            transform: "none",
+                            animation: "none"
                           }}
                         >
                           with Certified Tutors
                         </h2>
                         <p 
-                          data-animation="fadeInLeft" 
-                          data-delay=".6s"
                           style={{
                             fontSize: "clamp(16px, 4vw, 24px)",
                             color: "#fff",
@@ -133,7 +153,9 @@ import type { Metadata } from "next";
                             whiteSpace: "nowrap",
                             opacity: 1,
                             visibility: "visible",
-                            animation: "fadeInLeft 1s ease-in-out 0.4s both"
+                            position: "relative",
+                            transform: "none",
+                            animation: "none"
                           }}
                         >
                           Quran Classes for Kids & Adults Worldwide

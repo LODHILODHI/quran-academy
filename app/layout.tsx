@@ -132,29 +132,80 @@ export default function RootLayout({
               position: relative;
               z-index: 10 !important;
             }
-            /* Hero text must also be visible */
+            /* Hero text must also be visible - override any CSS that hides it */
             .slider-area .hero__caption,
+            .slider-area .hero__caption *,
+            .slider-area .hero__caption h1,
+            .slider-area .hero__caption h2,
+            .slider-area .hero__caption p,
             .slider-area h1,
             .slider-area h2,
-            .slider-area p {
+            .slider-area p,
+            .hero__caption,
+            .hero__caption h1,
+            .hero__caption h2,
+            .hero__caption p,
+            body .slider-area .hero__caption,
+            body .slider-area .hero__caption * {
               visibility: visible !important;
               opacity: 1 !important;
+              display: block !important;
             }
-            /* CSS animation for hero text (no WOW.js dependency) */
-            @keyframes fadeInLeft {
-              from {
-                opacity: 0;
-                transform: translateX(-30px);
-              }
-              to {
-                opacity: 1;
-                transform: translateX(0);
-              }
-            }
-            /* Ensure hero text is visible even without WOW.js */
-            .hero__caption [data-animation] {
+            /* Override any CSS that hides animated elements - maximum specificity */
+            body .slider-area [data-animation],
+            body .slider-area [data-animation] *,
+            body .hero__caption [data-animation],
+            body .hero__caption [data-animation] *,
+            .slider-area .hero__caption [data-animation],
+            .slider-area .hero__caption [data-animation] * {
               opacity: 1 !important;
               visibility: visible !important;
+              display: block !important;
+            }
+            /* Ensure hero text container is visible and stays in place - FIXED POSITION */
+            .hero__caption {
+              position: absolute !important;
+              top: 50% !important;
+              left: 0 !important;
+              transform: translateY(-50%) !important;
+              z-index: 101 !important;
+              display: block !important;
+              width: 100% !important;
+              padding: 0 20px !important;
+              will-change: auto !important;
+            }
+            /* Prevent any animations or transforms on hero text children */
+            .hero__caption *,
+            .slider-area .hero__caption *,
+            .slider-area .hero__caption h1,
+            .slider-area .hero__caption h2,
+            .slider-area .hero__caption p {
+              animation: none !important;
+              transform: none !important;
+              transition: none !important;
+              position: relative !important;
+              will-change: auto !important;
+            }
+            /* Prevent parallax or scroll effects on hero section */
+            .slider-area,
+            .slider-active,
+            .single-slider {
+              transform: none !important;
+              will-change: auto !important;
+            }
+            /* Lock hero text position - prevent any movement - MAXIMUM FORCE */
+            .hero__caption {
+              position: absolute !important;
+              top: 50% !important;
+              left: 0 !important;
+              transform: translateY(-50%) !important;
+            }
+            /* Prevent any JavaScript from moving hero text */
+            body .slider-area .hero__caption {
+              position: absolute !important;
+              top: 50% !important;
+              left: 0 !important;
+              transform: translateY(-50%) !important;
             }
             /* Mobile optimizations - reduce font loading delay */
             @media (max-width: 768px) {
