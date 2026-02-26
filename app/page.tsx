@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import Preloader from "./components/Preloader";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -64,39 +63,27 @@ import type { Metadata } from "next";
                   left: 0
                 }}
               >
-                {/* Hero Image with Next.js Image component for better LCP - Must be first element for LCP detection */}
-                <div 
+                {/* Hero Image - Using regular img tag for better LCP detection */}
+                <img
+                  src="/assets/img/hero/learn-quran-online-banner.jpg.jpg"
+                  alt="Learn Quran Online with Certified Tutors"
+                  width={1920}
+                  height={1080}
+                  fetchPriority="high"
+                  loading="eager"
+                  decoding="async"
                   style={{
-                    position: "absolute", 
-                    top: 0, 
-                    left: 0, 
-                    width: "100%", 
-                    height: "100%", 
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center center",
                     zIndex: 0,
-                    minHeight: "100vh",
-                    minWidth: "100vw"
+                    display: "block"
                   }}
-                  data-lcp-candidate="true"
-                >
-                  <Image
-                    src="/assets/img/hero/learn-quran-online-banner.jpg.jpg"
-                    alt="Learn Quran Online with Certified Tutors"
-                    fill
-                    priority
-                    quality={75}
-                    fetchPriority="high"
-                    unoptimized={false}
-                    style={{
-                      objectFit: "cover",
-                      objectPosition: "center center",
-                      position: "absolute",
-                      top: 0,
-                      left: 0
-                    }}
-                    sizes="100vw"
-                    loading="eager"
-                  />
-                </div>
+                />
                 {/* Dark overlay for better text readability */}
                 <div style={{
                   position: "absolute",

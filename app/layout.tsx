@@ -134,12 +134,7 @@ export default function RootLayout({
             }
             /* Ensure hero image is always visible for LCP - Critical for LCP detection */
             .slider-area img,
-            .slider-area [data-nextjs-image],
-            .slider-area picture,
-            .slider-area picture img,
-            .slider-area [data-nextjs-image] img,
-            .slider-area .single-slider,
-            .slider-area .single-slider > div {
+            .slider-area .single-slider img {
               visibility: visible !important;
               opacity: 1 !important;
               display: block !important;
@@ -147,10 +142,11 @@ export default function RootLayout({
               width: 100% !important;
               height: 100% !important;
               z-index: 0 !important;
+              /* Critical: Ensure image is detected as LCP element */
+              content-visibility: auto !important;
             }
             /* Ensure image loads immediately - no lazy loading for LCP element */
-            .slider-area img[loading="eager"],
-            .slider-area [data-nextjs-image] img {
+            .slider-area img[loading="eager"] {
               content-visibility: auto !important;
             }
             /* Hero text must also be visible - override any CSS that hides it */
@@ -240,13 +236,15 @@ export default function RootLayout({
               }
               /* Critical: Ensure image loads immediately on mobile for LCP */
               .slider-area img,
-              .slider-area [data-nextjs-image],
-              .slider-area picture {
+              .slider-area .single-slider img {
                 display: block !important;
                 visibility: visible !important;
                 opacity: 1 !important;
                 width: 100% !important;
                 height: 100% !important;
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
               }
               /* Reduce render blocking on mobile */
               body > header,
