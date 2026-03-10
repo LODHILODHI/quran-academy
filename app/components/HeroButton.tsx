@@ -11,7 +11,7 @@ export default function HeroButton() {
       style={{
         fontSize: "28px",
         fontWeight: "500",
-        color: "#ff6b35",
+        color: "white",
         marginBottom: "30px",
         display: "inline-block",
         textTransform: "uppercase",
